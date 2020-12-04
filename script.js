@@ -7,6 +7,7 @@ var minutesDisplay = document.querySelector("#minutes");
 var secondsDisplay = document.querySelector("#seconds");
 var workMinutesInput = document.querySelector("#work-minutes");
 var restMinutesInput = document.querySelector("#rest-minutes");
+var inputs = document.querySelector(".inputs");
 
 var totalSeconds = 0;
 var secondsElapsed = 0;
