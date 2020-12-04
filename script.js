@@ -80,6 +80,15 @@ function startTimer() {
     }
 }
 
+function pauseTimer() {
+    clearInterval(interval);
+    renderTime();
+}
 
+function stopTimer() {
+    secondsElapsed = 0;
+    setTime();
+    renderTime();
+}
 
 playButton.addEventListener("click", startTimer);
