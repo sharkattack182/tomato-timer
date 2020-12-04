@@ -38,4 +38,15 @@ function formatSeconds() {
     return formattedSeconds;
 }
 
+function setTime() {
+    var minutes;
 
+    if(status === "Working") {
+        minutes = workMinutesInput.nodeValue.trim();
+    } else {
+        minutes = restMinutesInput.nodeValue.trim();
+    }
+
+    clearInterval(interval);
+    totalSeconds = minutes * 60;
+}
