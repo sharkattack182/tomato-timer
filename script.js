@@ -91,4 +91,48 @@ function stopTimer() {
     renderTime();
 }
 
+function toggleStatus(e) {
+    var checked = e.target.checked;
+    if(checked) {
+        status = "Working";
+    } else {
+        status = "Resting"
+    }
+
+    statusSpan.textContent = status;
+    secondsElapsed = 0;
+
+    setTime();
+    renderTime();
+}
+
+function getTimePreferences() {
+    var preferences = JSON.parse(localStorage.setItem("preferences"));
+
+    if (preferences) {
+        workMinutesInput.value = preferences.workMinutes;
+    }
+    if(preferences.restMinutes) {
+        restMinutesInput.value = preferences.restMinutes;
+    }
+    
+    setTime();
+    renderTime();
+}
+
+function setTimePreferences() {
+    localStorage.setItem(
+        "preferences",
+        JSON.stringify({
+            workMinutes: workMinutesInput.value.trim(),
+            restMinutes: restMinutesInput.value.trim()
+        })
+    );
+}
+
 playButton.addEventListener("click", startTimer);
+pauseButton.addEventListener("click", pauseTimer);
+stopButton.addEventListener("click", stopTimer);
+statusToggle.addEventListener("change", toggleStatus);
+inputs.addEventListener("change", setTimePreferences);
+inputs.addEventListener("keyup", setTimePreferences);
