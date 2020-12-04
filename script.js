@@ -11,13 +11,14 @@ var restMinutesInput = document.querySelector("#rest-minutes");
 var totalSeconds = 0;
 var secondsElapsed = 0;
 var interval;
+var status = "Working";
 
 function formatMinutes() {
     var secondsLeft = totalSeconds - secondsElapsed;
     var minutesLeft = Math.floor(secondsLeft / 60);
     var formattedMinutes;
 
-    if(minutesLeft < 10) {
+    if (minutesLeft < 10) {
         formattedMinutes = "0" + minutesLeft;
     } else {
         formattedMinutes = minutesLeft;
@@ -30,7 +31,7 @@ function formatSeconds() {
     var secondsLeft = (totalSeconds - secondsElapsed) % 60;
     var formattedSeconds;
 
-    if(secondsLeft < 10) {
+    if (secondsLeft < 10) {
         formattedSeconds = "0" + secondsLeft;
     } else {
         formattedSeconds = secondsLeft;
@@ -41,12 +42,44 @@ function formatSeconds() {
 function setTime() {
     var minutes;
 
-    if(status === "Working") {
-        minutes = workMinutesInput.nodeValue.trim();
+    if (status === "Working") {
+        minutes = workMinutesInput.value.trim();
     } else {
-        minutes = restMinutesInput.nodeValue.trim();
+        minutes = restMinutesInput.value.trim();
     }
 
     clearInterval(interval);
     totalSeconds = minutes * 60;
 }
+
+function renderTime() {
+    minutesDisplay.textContent = formatMinutes();
+    secondsDisplay.textContent = formatSeconds();
+
+    if (secondsElapsed >= totalSeconds) {
+        if (status === "Working") {
+            alert("Take a break");
+        } else {
+            alert("Lets get back to work");
+        }
+
+        stopTimer();
+    }
+}
+
+function startTimer() {
+    setTime();
+    if(totalSeconds > 0) {
+        interval = setInterval(function() {
+            secondsElapsed++;
+            renderTime();
+
+        }, 1000);
+    } else {
+        alert("Timer must be more than zero");
+    }
+}
+
+
+
+playButton.addEventListener("click", startTimer);
