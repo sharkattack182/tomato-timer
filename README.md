@@ -19,4 +19,4 @@ CSS <img src="https://progress-bar.dev/35">
 [Deployed](https://sharkattack182.github.io/tomato-timer)
 
 ## Visuals
-<img src="/imgs/main.png">
+<img src="/imgs/main.PNG">
