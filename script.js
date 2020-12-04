@@ -15,7 +15,7 @@ var interval;
 
 
 function startTimer(totalSeconds) {
-  // Write code to start the timer here
+// Write code to start the timer here
   var timerInterval = setInterval(function () {
     totalSeconds--;
     minutesDisplay.textContent = Math.floor(totalSeconds / 60);
@@ -26,11 +26,22 @@ function startTimer(totalSeconds) {
         alert("time is up")
     }
 
+// If the timer is running the stop button will clear the timer and reset it
+    stopButton.addEventListener("click", function() {
+    var min = workMinutesInput.value
+    clearInterval(timerInterval);
+    minutesDisplay.textContent = min;
+    secondsDisplay.textContent = "00"
+
+})
 }, 1000);
 }
 
+// This code runs the timer when the user hits play
 playButton.addEventListener("click", function() {
     var time = workMinutesInput.value * 60;
     console.log(time);
     startTimer(time);
 });
+
+
