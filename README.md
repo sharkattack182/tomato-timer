@@ -17,3 +17,6 @@ CSS <img src="https://progress-bar.dev/35">
 [GitHub](https://github.com/sharkattack182/tomato-timer)
 <br>
 [Deployed](https://sharkattack182.github.io/tomato-timer)
+
+## Visuals
+<img src="/imgs/main.png">
